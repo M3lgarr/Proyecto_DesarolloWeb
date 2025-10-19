@@ -39,54 +39,65 @@ Permite gestionar **equipos**, **jugadores** y próximamente **partidos** y **ta
 ---
 
 ## 📂 Estructura del proyecto
-
 torneo-basket-slim/
-│── app/ # Configuración y bootstrap de Slim
-│── public/ # Archivos públicos (CSS, JS, imágenes, index.php)
-│── src/
+├── app/ # Configuración y bootstrap de Slim
+├── public/ # Archivos públicos (CSS, JS, imágenes, index.php)
+├── src/
 │ ├── Controllers/ # Controladores (Equipos, Jugadores, etc.)
 │ ├── Repositories/ # Acceso a la base de datos
 │ ├── Utils/ # Utilidades generales (View.php)
 │ └── Views/ # Vistas PHP con Bootstrap
-│── assets/
+├── assets/
 │ └── css/ # Estilos CSS separados (layout.css, home.css)
-│── vendor/ # Dependencias de Composer
-│── .gitignore
-│── composer.json
-│── README.md
+├── vendor/ # Dependencias de Composer
+├── .gitignore
+├── composer.json
+└── README.md
 
 
----
 
-## ⚡ Instalación
+# ============================
+# 🚀 Instrucciones de instalación
+# ============================
 
-1. **Clonar el repositorio**
-
-```bash
+# 1. Clonar el repositorio desde GitHub
 git clone https://github.com/TU_USUARIO/torneo-basket-slim.git
+
+# 2. Entrar a la carpeta del proyecto
 cd torneo-basket-slim
 
-Instalar dependencias
+# 3. Instalar dependencias con Composer
 composer install
 
-Configurar base de datos
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=torneo_basket
-DB_USERNAME=root
-DB_PASSWORD=
+# 4. Configurar la base de datos
+# Crea un archivo .env si no existe y agrega tus credenciales:
+# -----------------------------------
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=torneo_basket
+# DB_USERNAME=root
+# DB_PASSWORD=
+# -----------------------------------
 
-Levantar el servidor local
+# 5. Crear la base de datos en MySQL/MariaDB
+# (puedes usar phpMyAdmin o la terminal de MySQL)
+
+# 6. Levantar el servidor local de desarrollo
 php -S localhost:8080 -t public
+
+# 7. Abrir en el navegador
+# 👉 http://localhost:8080
+
 
 
 🧭 Módulos implementados
-Módulo	Estado	Descripción
-🧑 Equipos	✅ Completado	CRUD completo con alertas toast
-🏃 Jugadores	✅ Completado	CRUD + subida de foto + relación con equipos
-🏀 Partidos	⏳ Pendiente	CRUD + marcador + estado
-🏆 Tabla de posiciones	🕓 Planeado	Cálculo automático desde partidos finalizados
-🧼 Buenas prácticas aplicadas
+| Módulo                 | Estado       | Descripción                                   |
+| ---------------------- | ------------ | --------------------------------------------- |
+| 🧑 Equipos             | ✅ Completado | CRUD completo con alertas toast               |
+| 🏃 Jugadores           | ✅ Completado | CRUD + subida de foto + relación con equipos  |
+| 🏀 Partidos            | ⏳ Pendiente  | CRUD + marcador + estado                      |
+| 🏆 Tabla de posiciones | 🕓 Planeado  | Cálculo automático desde partidos finalizados |
+
 
 Repositorios para separar acceso a datos.
     Controladores limpios con redirecciones + toasts.
