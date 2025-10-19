@@ -28,13 +28,13 @@ Permite gestionar **equipos**, **jugadores** y próximamente **partidos** y **ta
 
 ## 🧰 Tecnologías usadas
 
-| Tipo                  | Herramienta / Librería                    |
-|------------------------|---------------------------------------------|
-| Backend                | [Slim Framework](https://www.slimframework.com/) |
-| Base de datos          | MySQL / MariaDB                            |
-| Frontend UI            | Bootstrap 5, Bootstrap Icons               |
-| Alertas y notificaciones | [SweetAlert2](https://sweetalert2.github.io/)  |
-| Control de versiones   | Git + GitHub                               |
+| Tipo                      | Herramienta / Librería                                 |
+|----------------------------|-------------------------------------------------------|
+| Backend                    | [Slim Framework](https://www.slimframework.com/)       |
+| Base de datos              | MySQL / MariaDB                                       |
+| Frontend UI                | Bootstrap 5, Bootstrap Icons                           |
+| Alertas y notificaciones   | [SweetAlert2](https://sweetalert2.github.io/)          |
+| Control de versiones       | Git + GitHub                                          |
 
 ---
 
@@ -61,21 +61,24 @@ torneo-basket-slim/
 ## ⚡ Instalación
 
 1. **Clonar el repositorio**
+
 ```bash
 git clone https://github.com/TU_USUARIO/torneo-basket-slim.git
 cd torneo-basket-slim
 
+Instalar dependencias
 composer install
 
+Configurar base de datos
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=torneo_basket
 DB_USERNAME=root
 DB_PASSWORD=
 
+Levantar el servidor local
 php -S localhost:8080 -t public
 
-👉 Luego abre http://localhost:8080
 
 🧭 Módulos implementados
 Módulo	Estado	Descripción
@@ -86,37 +89,21 @@ Módulo	Estado	Descripción
 🧼 Buenas prácticas aplicadas
 
 Repositorios para separar acceso a datos.
-
-Controladores limpios con redirecciones + toasts.
-
-SweetAlert2 para feedback claro de las acciones.
-
-Archivos CSS separados (layout general y páginas específicas).
-
-.gitignore para evitar subir archivos sensibles o pesados.
-
-Uso de ramas (main y feature/partidos) para desarrollo organizado.
-
-🧑‍💻 Contribuir
-
-Haz un fork del proyecto
-
-Crea una rama con tu feature:
-
-git checkout -b feature/nueva-funcionalidad
-
-
-Haz tus cambios y commits:
-
-git commit -m "feat: descripción de la funcionalidad"
-
-
-Haz push y abre un Pull Request
+    Controladores limpios con redirecciones + toasts.
+    SweetAlert2 para feedback claro de las acciones.
+    Archivos CSS separados (layout general y páginas específicas).
+    .gitignore para evitar subir archivos sensibles o pesados.
+    Uso de ramas (main y feature/partidos) para desarrollo organizado.
 
 📜 Licencia
 
 Este proyecto está bajo licencia MIT.
 Puedes usarlo libremente con fines educativos y de desarrollo.
 
-✍️ Desarrollado por Julio David Melgar Barillas AND David Sergio Samuel Vazques Samayoa
+✍️ Autores
+
+Julio David Melgar Barillas
+
+David Sergio Samuel Vazques Samayoa
+
 📅 Versión: 1.0 — “Primera versión funcional”
