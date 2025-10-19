@@ -1,42 +1,122 @@
-# Slim Framework 4 Skeleton Application
+# 🏀 Torneo Basket — Sistema de Gestión
 
-[![Coverage Status](https://coveralls.io/repos/github/slimphp/Slim-Skeleton/badge.svg?branch=master)](https://coveralls.io/github/slimphp/Slim-Skeleton?branch=master)
+Este proyecto es una aplicación web desarrollada con **PHP + Slim Framework** y **MySQL**, diseñada para administrar torneos de baloncesto.  
+Permite gestionar **equipos**, **jugadores** y próximamente **partidos** y **tablas de posiciones** de forma sencilla, moderna y con alertas visuales amigables.
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 4 application. This application uses the latest Slim 4 with Slim PSR-7 implementation and PHP-DI container implementation. It also uses the Monolog logger.
+---
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+## 🚀 Características principales
 
-## Install the Application
+- ✨ Interfaz moderna y responsiva con **Bootstrap 5**.  
+- 🧑‍🤝‍🧑 Gestión de **Equipos** (crear, editar, eliminar, listar).  
+- 🏃 Gestión de **Jugadores** con carga de fotografía y asignación a equipos.  
+- 📸 Subida de imágenes con validaciones de tipo y tamaño.  
+- 🔔 Alertas **toast dinámicas** con **SweetAlert2** para feedback de acciones.  
+- 🧭 Navegación clara con barra superior y diseño minimalista.  
+- 🧰 Código organizado por capas (Controllers, Repositories, Views, Utils).
 
-Run this command from the directory in which you want to install your new Slim Framework application. You will require PHP 7.4 or newer.
+---
 
+## 🧾 Requisitos previos
+
+- PHP 8.1 o superior  
+- Composer  
+- MySQL / MariaDB  
+- XAMPP o equivalente (entorno local)
+
+---
+
+## 🧰 Tecnologías usadas
+
+| Tipo                  | Herramienta / Librería                    |
+|------------------------|---------------------------------------------|
+| Backend                | [Slim Framework](https://www.slimframework.com/) |
+| Base de datos          | MySQL / MariaDB                            |
+| Frontend UI            | Bootstrap 5, Bootstrap Icons               |
+| Alertas y notificaciones | [SweetAlert2](https://sweetalert2.github.io/)  |
+| Control de versiones   | Git + GitHub                               |
+
+---
+
+## 📂 Estructura del proyecto
+
+torneo-basket-slim/
+│── app/ # Configuración y bootstrap de Slim
+│── public/ # Archivos públicos (CSS, JS, imágenes, index.php)
+│── src/
+│ ├── Controllers/ # Controladores (Equipos, Jugadores, etc.)
+│ ├── Repositories/ # Acceso a la base de datos
+│ ├── Utils/ # Utilidades generales (View.php)
+│ └── Views/ # Vistas PHP con Bootstrap
+│── assets/
+│ └── css/ # Estilos CSS separados (layout.css, home.css)
+│── vendor/ # Dependencias de Composer
+│── .gitignore
+│── composer.json
+│── README.md
+
+
+---
+
+## ⚡ Instalación
+
+1. **Clonar el repositorio**
 ```bash
-composer create-project slim/slim-skeleton [my-app-name]
-```
+git clone https://github.com/TU_USUARIO/torneo-basket-slim.git
+cd torneo-basket-slim
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+composer install
 
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writable.
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=torneo_basket
+DB_USERNAME=root
+DB_PASSWORD=
 
-To run the application in development, you can run these commands 
+php -S localhost:8080 -t public
 
-```bash
-cd [my-app-name]
-composer start
-```
+👉 Luego abre http://localhost:8080
 
-Or you can use `docker-compose` to run the app with `docker`, so you can run these commands:
-```bash
-cd [my-app-name]
-docker-compose up -d
-```
-After that, open `http://localhost:8080` in your browser.
+🧭 Módulos implementados
+Módulo	Estado	Descripción
+🧑 Equipos	✅ Completado	CRUD completo con alertas toast
+🏃 Jugadores	✅ Completado	CRUD + subida de foto + relación con equipos
+🏀 Partidos	⏳ Pendiente	CRUD + marcador + estado
+🏆 Tabla de posiciones	🕓 Planeado	Cálculo automático desde partidos finalizados
+🧼 Buenas prácticas aplicadas
 
-Run this command in the application directory to run the test suite
+Repositorios para separar acceso a datos.
 
-```bash
-composer test
-```
+Controladores limpios con redirecciones + toasts.
 
-That's it! Now go build something cool.
+SweetAlert2 para feedback claro de las acciones.
+
+Archivos CSS separados (layout general y páginas específicas).
+
+.gitignore para evitar subir archivos sensibles o pesados.
+
+Uso de ramas (main y feature/partidos) para desarrollo organizado.
+
+🧑‍💻 Contribuir
+
+Haz un fork del proyecto
+
+Crea una rama con tu feature:
+
+git checkout -b feature/nueva-funcionalidad
+
+
+Haz tus cambios y commits:
+
+git commit -m "feat: descripción de la funcionalidad"
+
+
+Haz push y abre un Pull Request
+
+📜 Licencia
+
+Este proyecto está bajo licencia MIT.
+Puedes usarlo libremente con fines educativos y de desarrollo.
+
+✍️ Desarrollado por Julio David Melgar Barillas AND David Sergio Samuel Vazques Samayoa
+📅 Versión: 1.0 — “Primera versión funcional”
