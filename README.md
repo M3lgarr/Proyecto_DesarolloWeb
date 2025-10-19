@@ -55,7 +55,9 @@ torneo-basket-slim/
 └── README.md
 
 
+---
 
+## ⚡
 # ============================
 # 🚀 Instrucciones de instalación
 # ============================
