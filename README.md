@@ -56,8 +56,9 @@ torneo-basket-slim/
 
 
 ---
+## ⚡ Instrucciones de instalación
 
-## ⚡
+```bash
 # ============================
 # 🚀 Instrucciones de instalación
 # ============================
