@@ -1,0 +1,33 @@
+.idea/
+.vscode/
+/coverage/
+/vendor/
+/logs/*
+!/logs/README.md
+.phpunit.result.cache
+@"
+# Dependencias / build
+/vendor/
+/node_modules/
+
+# Entornos
+.env
+.env.local
+.env.*.local
+
+# Logs / cachés
+/storage/
+*.log
+
+# Subidas públicas
+/public/uploads/
+/public/uploads/*
+
+# IDEs
+.vscode/
+.idea/
+
+# SO
+Thumbs.db
+.DS_Store
+"@ | Out-File -Encoding UTF8 .gitignore

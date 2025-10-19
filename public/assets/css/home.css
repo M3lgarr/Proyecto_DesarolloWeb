@@ -1,0 +1,57 @@
+/* ✨ Feature Cards */
+.feature-card {
+  background: #fff;
+  border: 0;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+}
+
+/* 🟡 Iconos circulares */
+.icon-circle {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 30px;
+  color: #fff;
+  margin: 0 auto;
+}
+
+/* 🌈 Gradientes */
+.bg-primary-gradient {
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+}
+.bg-green-gradient {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+}
+
+/* 🚀 Botones */
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.action-btn.green {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+}
+
+.action-btn:hover {
+  opacity: 0.9;
+  transform: translateX(3px);
+}
