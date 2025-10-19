@@ -91,7 +91,9 @@ php -S localhost:8080 -t public
 # 7. Abrir en el navegador
 # 👉 http://localhost:8080
 
+ ```
 
+  ```
 
 🧭 Módulos implementados
 | Módulo                 | Estado       | Descripción                                   |
