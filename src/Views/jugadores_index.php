@@ -53,37 +53,36 @@
       </div>
     </div>
 
-    <!-- FORM -->
+    <!-- FORM (crear/editar) -->
     <div class="col-lg-5 mb-4">
-      <div class="card p-3 <?= isset($editing) && $editing ? 'border-warning' : '' ?>">
-        <h5 class="mb-3 <?= isset($editing) && $editing ? 'text-warning' : '' ?>">
-          <?= isset($editing) && $editing ? '✏️ EDITAR JUGADOR' : '➕ NUEVO JUGADOR' ?>
+      <?php
+        $isEdit   = isset($editing) && $editing;
+        $cardCls  = 'card p-3' . ($isEdit ? ' border-warning' : '');
+        $titleCls = 'mb-3' . ($isEdit ? ' text-warning' : '');
+        $inputCls = $isEdit ? ' border-warning' : '';
+      ?>
+      <div class="<?= $cardCls ?>">
+        <h5 class="<?= $titleCls ?>">
+          <?= $isEdit ? '✏️ EDITAR JUGADOR' : '➕ NUEVO JUGADOR' ?>
         </h5>
 
-        <?php /*if (!empty($flash_success)): ?>
-          <div class="alert alert-success py-2"><?= htmlspecialchars($flash_success) ?></div>
-        <?php endif; ?>
-        <?php if (!empty($flash_error)): ?>
-          <div class="alert alert-danger py-2"><?= htmlspecialchars($flash_error) ?></div>
-        <?php endif;*/ ?>
-
-        <?php if (isset($editing) && $editing): ?>
+        <?php if ($isEdit): ?>
           <form method="POST" action="/ui/jugadores/<?= (int)$editing['id_jugador'] ?>/update" enctype="multipart/form-data">
             <div class="mb-3">
               <label class="form-label">Nombres</label>
-              <input type="text" name="nombres" class="form-control" value="<?= htmlspecialchars($editing['nombres']) ?>" required>
+              <input type="text" name="nombres" class="form-control<?= $inputCls ?>" value="<?= htmlspecialchars($editing['nombres']) ?>" required>
             </div>
             <div class="mb-3">
               <label class="form-label">Apellidos</label>
-              <input type="text" name="apellidos" class="form-control" value="<?= htmlspecialchars($editing['apellidos']) ?>" required>
+              <input type="text" name="apellidos" class="form-control<?= $inputCls ?>" value="<?= htmlspecialchars($editing['apellidos']) ?>" required>
             </div>
             <div class="mb-3">
               <label class="form-label">Fecha de nacimiento</label>
-              <input type="date" name="fecha_nacimiento" class="form-control" value="<?= htmlspecialchars($editing['fecha_nacimiento'] ?? '') ?>">
+              <input type="date" name="fecha_nacimiento" class="form-control<?= $inputCls ?>" value="<?= htmlspecialchars($editing['fecha_nacimiento'] ?? '') ?>">
             </div>
             <div class="mb-3">
               <label class="form-label">Equipo</label>
-              <select name="id_equipo" class="form-select" required>
+              <select name="id_equipo" class="form-select<?= $inputCls ?>" required>
                 <?php foreach ($equipos as $e): ?>
                   <option value="<?= (int)$e['id_equipo'] ?>" <?= ($editing['id_equipo']==$e['id_equipo'])?'selected':'' ?>>
                     <?= htmlspecialchars($e['nombre_equipo']) ?>
@@ -93,7 +92,7 @@
             </div>
             <div class="mb-3">
               <label class="form-label">Foto (opcional; reemplaza la actual)</label>
-              <input type="file" name="foto" class="form-control" accept="image/*">
+              <input type="file" name="foto" class="form-control<?= $inputCls ?>" accept="image/*">
             </div>
             <div class="d-flex gap-2">
               <button class="btn btn-warning text-white">Actualizar</button>

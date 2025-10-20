@@ -1,4 +1,8 @@
-<?php $title = $title ?? 'Torneo Basket'; ?>
+<?php
+$title = $title ?? 'Torneo Basket';
+  // Normaliza la ruta actual SIN query strings para resaltar el menú activo
+  $path  = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
+?>
 <!doctype html>
 <html lang="es">
 
@@ -38,19 +42,31 @@
                     <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
                     <li class="nav-item">
                         <a class="nav-link <?= ($_SERVER['REQUEST_URI'] ?? '') === '/ui' ? 'active' : '' ?>" href="/ui">
-                        <i class="bi bi-house-door me-1"></i> Inicio
+                            <i class="bi bi-house-door me-1"></i> Inicio
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?= str_starts_with($_SERVER['REQUEST_URI'] ?? '', '/ui/equipos') ? 'active' : '' ?>" href="/ui/equipos">
-                        <i class="bi bi-people me-1"></i> Equipos
+                            <i class="bi bi-people me-1"></i> Equipos
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?= str_starts_with($_SERVER['REQUEST_URI'] ?? '', '/ui/jugadores') ? 'active' : '' ?>" href="/ui/jugadores">
-                        <i class="bi bi-person-badge me-1"></i> Jugadores
+                            <i class="bi bi-person-badge me-1"></i> Jugadores
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= str_starts_with($path, '/ui/partidos') ? 'active' : '' ?>" href="/ui/partidos">
+                            <i class="bi bi-calendar2-week me-1"></i> Partidos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= str_starts_with($path, '/ui/tabla') ? 'active' : '' ?>" href="/ui/tabla">
+                            <i class="bi bi-trophy me-1"></i> Tabla
+                        </a>
+                    </li>
+
+
                     </ul>
                 </div>
                 </div>

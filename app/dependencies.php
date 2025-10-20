@@ -10,6 +10,7 @@ use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use App\Repositories\EquipoRepository;
+use APP\Repositories\PartidoRepository;
 
 
 return function (ContainerBuilder $containerBuilder) {
@@ -56,5 +57,17 @@ return function (ContainerBuilder $containerBuilder) {
                 return new JugadorRepository($pdo);
         },
 
+        PartidoRepository::class => function (Psr\Container\ContainerInterface $c) {
+            $pdo = $c->get(PDO::class); // ya lo definiste antes
+                return new PartidoRepository($pdo);
+        },
+
+        TablaRepository::class => function (\Psr\Container\ContainerInterface $c) {
+            $pdo = $c->get(PDO::class);
+                return new TablaRepository($pdo);
+        },
+
     ]);
+
+
 };
