@@ -103,16 +103,30 @@ class EquipoController
     }
 
     // POST /ui/equipos/{id}/delete
-    public function uiDelete(Request $req, Response $res, array $args): Response {
-        $id = (int)$args['id'];
+   public function uiDelete(Request $req, Response $res, array $args): Response {
+    $id = (int)$args['id'];
+    try {
+        if ($id <= 0) throw new \RuntimeException('ID inválido.');
 
-        try {
-            if ($id <= 0) throw new \RuntimeException('ID inválido.');
-            $this->repo->delete($id);
-            return $res->withHeader('Location', '/ui/equipos?ok=' . urlencode('Equipo eliminado') . '&type=delete')->withStatus(302);
-
-        } catch (\Throwable $e) {
-            return $res->withHeader('Location', '/ui/equipos?err=' . urlencode('Error: ' . $e->getMessage()))->withStatus(302);
+        if ($this->repo->hasPartidos($id)) {
+            return $res->withHeader(
+                'Location',
+                '/ui/equipos?err=' . urlencode('No se puede eliminar: el equipo tiene partidos asociados.')
+            )->withStatus(302);
         }
+
+        $this->repo->delete($id);
+        return $res->withHeader(
+            'Location',
+            '/ui/equipos?ok=' . urlencode('Equipo eliminado') . '&type=delete'
+        )->withStatus(302);
+
+    } catch (\Throwable $e) {
+        return $res->withHeader(
+            'Location',
+            '/ui/equipos?err=' . urlencode('Error: ' . $e->getMessage())
+        )->withStatus(302);
     }
+}
+
 }

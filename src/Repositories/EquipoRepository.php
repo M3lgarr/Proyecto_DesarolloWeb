@@ -27,6 +27,15 @@ class EquipoRepository {
             $stmt->execute([':n' => $nombre, ':id' => $id]);
         }
 
+        public function hasPartidos(int $id): bool{
+            $sql = "SELECT 
+                        (SELECT COUNT(*) FROM partidos WHERE id_local = :id) +
+                        (SELECT COUNT(*) FROM partidos WHERE id_visitante = :id)
+                    AS total";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([':id' => $id]);
+            return (int)$stmt->fetchColumn()>0;
+        }
         public function delete(int $id): void {
             $stmt = $this->pdo->prepare("DELETE FROM equipos WHERE id_equipo = :id");
             $stmt->execute([':id' => $id]);
