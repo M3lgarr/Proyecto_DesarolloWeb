@@ -83,7 +83,7 @@ $title = $title ?? 'Torneo Basket';
             <div class="container app-container py-4 text-center text-muted small">
                 <div class="d-flex justify-content-center align-items-center gap-2">
                     <i class="bi bi-lightning-charge-fill"></i>
-                    <span>Slim + Bootstrap • <?= date('Y') ?></span>
+                    <span>Slim + Bootstrap • Julio Melgar & David Vasquez | <?= date('Y') ?></span>
                 </div>
             </div>
         </footer>
