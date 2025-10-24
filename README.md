@@ -118,7 +118,7 @@ Puedes usarlo libremente con fines educativos y de desarrollo.
 
 # Autores
 
-- **Julio David Melgar Barillas** — Desarrollador principal  
+- **Julio David Melgar Barillas** — Desarrollador 
   Email: jmelgarb4@miumg.edu.gt
 
 - **David Sergio Samuel Vázquez Samayoa** — Desarrollador  
