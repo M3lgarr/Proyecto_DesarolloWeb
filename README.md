@@ -118,14 +118,14 @@ Puedes usarlo libremente con fines educativos y de desarrollo.
 
 # Autores
 
-- **Julio David Melgar Barillas** — Desarrollador 
+- **Julio David Melgar Barillas** — Desarrollador   
   Email: jmelgarb4@miumg.edu.gt
 
 - **David Sergio Samuel Vázquez Samayoa** — Desarrollador  
   Email: dvasquezs6@miumg.edu.gt
 
 ## Agradecimientos
-- Docentes y revisores del curso X.
+- Docentes y revisores del curso Desarollo Web.
 
 
 📅 Versión: 1.0 — “Primera versión funcional”
