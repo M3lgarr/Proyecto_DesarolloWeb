@@ -119,10 +119,10 @@ Puedes usarlo libremente con fines educativos y de desarrollo.
 # Autores
 
 - **Julio David Melgar Barillas** — Desarrollador principal  
-  Email: juliodavid@example.com · GitHub: @juliomelgar
+  Email: jmelgarb4@miumg.edu.gt
 
 - **David Sergio Samuel Vázquez Samayoa** — Desarrollador  
-  Email: davidssvs@example.com · GitHub: @davidssvs
+  Email: dvasquezs6@miumg.edu.gt
 
 ## Agradecimientos
 - Docentes y revisores del curso X.
