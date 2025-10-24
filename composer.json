@@ -10,17 +10,30 @@
     "homepage": "http://github.com/slimphp/Slim-Skeleton",
     "license": "MIT",
     "authors": [
-        {
-            "name": "Josh Lockhart",
-            "email": "info@joshlockhart.com",
-            "homepage": "http://www.joshlockhart.com/"
-        },
-        {
-            "name": "Pierre Berube",
-            "email": "pierre@lgse.com",
-            "homepage": "http://www.lgse.com/"
-        }
+    {
+        "name": "Julio David Melgar Barillas",
+        "email": "juliodavid@example.com",
+        "homepage": "https://github.com/juliomelgar",
+        "role": "Desarrollador principal"
+    },
+    {
+        "name": "David Sergio Samuel Vázquez Samayoa",
+        "email": "davidssvs@example.com",
+        "homepage": "https://github.com/davidssvs",
+        "role": "Desarrollador"
+    },
+    {
+        "name": "Josh Lockhart",
+        "email": "info@joshlockhart.com",
+        "homepage": "http://www.joshlockhart.com/"
+    },
+    {
+        "name": "Pierre Berube",
+        "email": "pierre@lgse.com",
+        "homepage": "http://www.lgse.com/"
+    }
     ],
+
     "require": {
         "php": "^7.4 || ^8.0",
         "ext-json": "*",
@@ -60,3 +73,4 @@
         "test": "phpunit"
     }
 }
+
