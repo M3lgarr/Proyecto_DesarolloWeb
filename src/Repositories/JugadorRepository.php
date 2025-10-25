@@ -68,4 +68,11 @@ class JugadorRepository{
         return $row ? $row['foto'] : null;
     }
 
+    public function byEquipo(int $idEquipo): array {
+    $stmt = $this->pdo->prepare("SELECT * FROM jugadores WHERE id_equipo = :e ORDER BY apellidos, nombres");
+    $stmt->execute([':e' => $idEquipo]);
+    return $stmt->fetchAll();
+    }
+
+
 }

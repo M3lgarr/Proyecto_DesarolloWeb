@@ -22,11 +22,22 @@ class PartidoRepository{
         return $this->pdo->query($sql)->fetchAll();
     }
 
+  // src/Repositories/PartidoRepository.php
     public function find(int $id): ?array{
-        $stmt = $this->pdo->prepare("SELECT * FROM partidos WHERE id_partido = :id");
+        $sql = "SELECT p.*,
+                    el.nombre_equipo AS local_nombre,
+                    ev.nombre_equipo AS visitante_nombre
+                FROM partidos p
+                JOIN equipos el ON el.id_equipo = p.id_local
+                JOIN equipos ev ON ev.id_equipo = p.id_visitante
+                WHERE p.id_partido = :id";
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':id' => $id]);
         return $stmt->fetch() ?: null;
     }
+
+
+
     
 
     public function create(array $data): int{

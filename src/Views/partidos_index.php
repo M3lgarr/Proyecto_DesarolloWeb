@@ -18,7 +18,7 @@
                 <th>Fecha/Hora</th>
                 <th>Marcador</th>
                 <th>Estado</th>
-                <th style="width:180px">Acciones</th>
+                <th style="width:220px">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -30,7 +30,17 @@
                   <td><?= $i+1 ?></td>
                   <td><?= htmlspecialchars($p['local_nombre']) ?></td>
                   <td><?= htmlspecialchars($p['visitante_nombre']) ?></td>
-                  <td><small class="text-muted"><?= $p['fecha_hora'] ? htmlspecialchars($p['fecha_hora']) : '—' ?></small></td>
+                  <td>
+                    <small class="text-muted">
+                      <?php if (!empty($p['fecha_hora'])):
+                        // 2025-10-15 19:00:00 -> 15/10/2025 19:00
+                        $dt = DateTime::createFromFormat('Y-m-d H:i:s', $p['fecha_hora']);
+                        echo $dt ? $dt->format('d/m/Y H:i') : htmlspecialchars($p['fecha_hora']);
+                      else: ?>
+                        —
+                      <?php endif; ?>
+                    </small>
+                  </td>
                   <td>
                     <?= (is_null($p['pts_local']) || is_null($p['pts_visitante']))
                           ? '—'
@@ -42,10 +52,16 @@
                       <?= htmlspecialchars($p['estado']) ?>
                     </span>
                   </td>
-                  <td>
-                    <a class="btn btn-sm btn-outline-primary" href="/ui/partidos?edit=<?= (int)$p['id_partido'] ?>">Editar</a>
-                    <form action="/ui/partidos/<?= (int)$p['id_partido'] ?>/delete" method="POST" style="display:inline-block"
-                          onsubmit="return confirm('¿Eliminar este partido?');">
+                  <td class="d-flex gap-1">
+                    <a class="btn btn-sm btn-outline-primary"
+                       href="/ui/partidos?edit=<?= (int)$p['id_partido'] ?>">Editar</a>
+
+                    <!-- Botón para futura pantalla de registro de puntos -->
+                    <a class="btn btn-sm btn-outline-success"
+                       href="/ui/partidos/<?= (int)$p['id_partido'] ?>/puntos">Puntuar</a>
+
+                    <form action="/ui/partidos/<?= (int)$p['id_partido'] ?>/delete"
+                          method="POST" onsubmit="return confirm('¿Eliminar este partido?');">
                       <button class="btn btn-sm btn-outline-danger">Eliminar</button>
                     </form>
                   </td>
@@ -57,33 +73,37 @@
             </tbody>
           </table>
         </div>
+
+        <div class="small text-muted">
+          <span class="badge bg-secondary">Pendiente</span> /
+          <span class="badge bg-success">Finalizado</span> /
+          <span class="badge bg-warning text-dark">Suspendido</span>
+        </div>
       </div>
     </div>
 
     <!-- FORM (crear/editar) -->
     <div class="col-lg-5">
       <?php
-        $isEdit = isset($editing) && $editing;
-        $action = $isEdit ? "/ui/partidos/{$editing['id_partido']}/update" : "/ui/partidos";
-        $dtVal  = $isEdit && !empty($editing['fecha_hora'])
-                  ? str_replace(' ', 'T', substr($editing['fecha_hora'], 0, 16))
-                  : '';
-        // clases para “modo edición”
-        $cardClass   = 'card p-3' . ($isEdit ? ' border-warning' : '');
-        $titleClass  = 'mb-3' . ($isEdit ? ' text-warning' : '');
-        $inputWarn   = $isEdit ? ' border-warning' : '';
-        $btnClass    = $isEdit ? 'btn btn-warning text-white' : 'btn btn-primary';
-        $btnLabel    = $isEdit ? 'Actualizar' : 'Guardar';
+        $isEdit  = isset($editing) && $editing;
+        $action  = $isEdit ? "/ui/partidos/{$editing['id_partido']}/update" : "/ui/partidos";
+        $dtVal   = $isEdit && !empty($editing['fecha_hora'])
+                    ? str_replace(' ', 'T', substr($editing['fecha_hora'], 0, 16)) : '';
+        $cardCls = 'card p-3' . ($isEdit ? ' border-warning' : '');
+        $ttlCls  = 'mb-3' . ($isEdit ? ' text-warning' : '');
+        $inpW    = $isEdit ? ' border-warning' : '';
+        $btnCls  = $isEdit ? 'btn btn-warning text-white' : 'btn btn-primary';
+        $btnLbl  = $isEdit ? 'Actualizar' : 'Guardar';
       ?>
-      <div class="<?= $cardClass ?>">
-        <h5 class="<?= $titleClass ?>">
+      <div class="<?= $cardCls ?>">
+        <h5 class="<?= $ttlCls ?>">
           <?= $isEdit ? '✏️ EDITAR PARTIDO' : '➕ NUEVO PARTIDO' ?>
         </h5>
 
         <form method="POST" action="<?= $action ?>">
           <div class="mb-3">
             <label class="form-label">Equipo local</label>
-            <select name="id_local" class="form-select<?= $inputWarn ?>" required>
+            <select name="id_local" class="form-select<?= $inpW ?>" required>
               <option value="">Selecciona...</option>
               <?php foreach ($equipos as $e): ?>
                 <option value="<?= (int)$e['id_equipo'] ?>"
@@ -96,7 +116,7 @@
 
           <div class="mb-3">
             <label class="form-label">Equipo visitante</label>
-            <select name="id_visitante" class="form-select<?= $inputWarn ?>" required>
+            <select name="id_visitante" class="form-select<?= $inpW ?>" required>
               <option value="">Selecciona...</option>
               <?php foreach ($equipos as $e): ?>
                 <option value="<?= (int)$e['id_equipo'] ?>"
@@ -109,19 +129,19 @@
 
           <div class="mb-3">
             <label class="form-label">Fecha y hora</label>
-            <input type="datetime-local" name="fecha_hora" class="form-control<?= $inputWarn ?>"
+            <input type="datetime-local" name="fecha_hora" class="form-control<?= $inpW ?>"
                    value="<?= htmlspecialchars($dtVal) ?>">
           </div>
 
           <div class="mb-3">
             <label class="form-label">Sede (opcional)</label>
-            <input type="text" name="sede" class="form-control<?= $inputWarn ?>"
+            <input type="text" name="sede" class="form-control<?= $inpW ?>"
                    value="<?= $isEdit ? htmlspecialchars($editing['sede'] ?? '') : '' ?>">
           </div>
 
           <div class="mb-3">
             <label class="form-label">Jornada (opcional)</label>
-            <input type="text" name="jornada" class="form-control<?= $inputWarn ?>"
+            <input type="text" name="jornada" class="form-control<?= $inpW ?>"
                    value="<?= $isEdit ? htmlspecialchars($editing['jornada'] ?? '') : '' ?>">
           </div>
 
@@ -129,19 +149,19 @@
             <div class="row g-2">
               <div class="col-6">
                 <label class="form-label">Puntos local</label>
-                <input type="number" name="pts_local" class="form-control<?= $inputWarn ?>"
+                <input type="number" name="pts_local" class="form-control<?= $inpW ?>"
                        value="<?= htmlspecialchars((string)($editing['pts_local'] ?? '')) ?>">
               </div>
               <div class="col-6">
                 <label class="form-label">Puntos visitante</label>
-                <input type="number" name="pts_visitante" class="form-control<?= $inputWarn ?>"
+                <input type="number" name="pts_visitante" class="form-control<?= $inpW ?>"
                        value="<?= htmlspecialchars((string)($editing['pts_visitante'] ?? '')) ?>">
               </div>
             </div>
 
             <div class="mb-3 mt-2">
               <label class="form-label">Estado</label>
-              <select name="estado" class="form-select<?= $inputWarn ?>">
+              <select name="estado" class="form-select<?= $inpW ?>">
                 <?php
                   $est = $editing['estado'] ?? 'pendiente';
                   foreach (['pendiente'=>'Pendiente','finalizado'=>'Finalizado','suspendido'=>'Suspendido'] as $k=>$v):
@@ -153,7 +173,7 @@
           <?php endif; ?>
 
           <div class="d-flex gap-2">
-            <button class="<?= $btnClass ?>"><?= $btnLabel ?></button>
+            <button class="<?= $btnCls ?>"><?= $btnLbl ?></button>
             <?php if ($isEdit): ?>
               <a href="/ui/partidos" class="btn btn-secondary">Cancelar</a>
             <?php endif; ?>

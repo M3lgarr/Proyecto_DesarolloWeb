@@ -87,13 +87,23 @@ return function (App $app) {
         $group->post('/{id}/delete',  [JugadorController::class, 'uiDelete']);
     });
 
-   /* ===== UI: Partidos ===== */
+    /* ===== UI: Partidos ===== */
     $app->group('/ui/partidos', function (Group $group) {
-        $group->get('',               [PartidoController::class, 'uiIndex']);    // GET  /ui/partidos
-        $group->post('',              [PartidoController::class, 'uiStore']);    // POST /ui/partidos
-        $group->post('/{id}/update',  [PartidoController::class, 'uiUpdate']);   // POST /ui/partidos/{id}/update
-        $group->post('/{id}/delete',  [PartidoController::class, 'uiDelete']);   // POST /ui/partidos/{id}/delete
+        $group->get('',              [PartidoController::class, 'uiIndex']);
+        $group->post('',             [PartidoController::class, 'uiStore']);
+        $group->post('/{id}/update', [PartidoController::class, 'uiUpdate']);
+        $group->post('/{id}/delete', [PartidoController::class, 'uiDelete']);
+
+        // Puntuar (form GET) + guardar (POST)
+        $group->get('/{id}/puntos',  [PartidoController::class, 'uiPuntosForm']);
+        $group->post('/{id}/puntos', [PartidoController::class, 'uiAddPunto']);
+
+        // Eliminar UNA anotación
+        $group->post('/puntos/{id}/delete', [PartidoController::class, 'uiDeletePunto']);
     });
+
+
+
 
     $app->group('/ui/tabla', function (Group $group){
         $group->get('',[TablaController::class,'uiIndex']);
